@@ -8,3 +8,28 @@ const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement =  document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 
+
+// create a bluprint class
+class Calculator {
+    //constructor 
+    constructor(previousOperandTextElement, currentOperandTextElement){
+        this.previousOperandTextElement = previousOperandTextElement
+        this.currentOperandTextElement = currentOperandTextElement
+    }
+
+
+    //create a function
+    clear(){}
+
+    delete(){}
+
+    //use to display the number in the screen
+    appendNumber(){}
+
+    chooseOperation(){}
+
+    compute(){}
+
+    updateDisplay(){}
+
+} 
