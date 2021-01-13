@@ -90,7 +90,7 @@ class Calculator {
         if (decimalDigits != null) {
           return `${integerDisplay}.${decimalDigits}`
         } else {
-          return integerDisplay
+          return integerDisplay 
         }
       }
  
