@@ -9,16 +9,19 @@
 body {
   padding: 0;
   margin: 0;
-  background: linear-gradient(to right, #00aaff, #00ff6c);
+  background: linear-gradient(to right, #ff0000, #ea00ff);
+}
+
+.calculator-grid2 {
+  min-height: 100vh;
 }
 
 .calculator-grid {
   display: grid;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  grid-template-columns: repeat(4, 90px);
+  grid-template-rows: minmax(100px, auto) repeat(5, 100px);
   gap: 6px;
 }
 
@@ -48,6 +51,11 @@ body {
   padding: 10px;
   word-wrap: break-word;
   word-break: break-all;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .output .previous-operand {
