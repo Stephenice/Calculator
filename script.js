@@ -1,6 +1,5 @@
 "use strict";
 
-// select all element
 const numberButtons = document.querySelectorAll("[data-number]");
 const operationButton = document.querySelectorAll("[data-operation]");
 const equalsButton = document.querySelector("[data-equals]");
@@ -12,17 +11,15 @@ const previousOperandTextElement = document.querySelector(
 const currentOperandTextElement = document.querySelector(
   "[data-current-operand]"
 );
+const percentage = document.querySelector("[data-percentage]");
 
-// create a bluprint class
 class Calculator {
-  //constructor
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
     this.clear();
   }
 
-  //create a function
   clear() {
     this.currentOperand = "";
     this.previousOperand = "";
@@ -34,7 +31,6 @@ class Calculator {
   }
 
   appendNumber(number) {
-    //checking if the dot is one in the numbers
     if (number === "." && this.currentOperand.includes(".")) return;
     console.log(number);
     this.currentOperand = this.currentOperand.toString() + number.toString();
@@ -53,7 +49,6 @@ class Calculator {
 
   compute() {
     let computation;
-    //convert the string to a number
     const prev = parseFloat(this.previousOperand);
     const current = parseFloat(this.currentOperand);
     if (isNaN(prev) || isNaN(current)) return;
@@ -70,12 +65,19 @@ class Calculator {
       case "÷":
         computation = prev / current;
         break;
+      case "MOD":
+        computation = prev % current;
+        break;
       default:
         return;
     }
     this.currentOperand = computation;
     this.previousOperand = "";
     this.operation = undefined;
+  }
+
+  percentage() {
+    this.currentOperand = this.currentOperand.toString() / 100;
   }
 
   getDisplayNumber(number) {
@@ -97,7 +99,6 @@ class Calculator {
     }
   }
 
-  //use to update the values
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.getDisplayNumber(
       this.currentOperand
@@ -112,13 +113,11 @@ class Calculator {
   }
 }
 
-//object
 const calculator = new Calculator(
   previousOperandTextElement,
   currentOperandTextElement
 );
 
-//looping the number button and  adding addEventListener
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     calculator.appendNumber(button.innerText);
@@ -126,7 +125,6 @@ numberButtons.forEach((button) => {
   });
 });
 
-//looping the Opration button and  adding addEventListener
 operationButton.forEach((button) => {
   button.addEventListener("click", () => {
     calculator.chooseOperation(button.innerText);
@@ -146,5 +144,10 @@ allClearButton.addEventListener("click", (button) => {
 
 deleteButton.addEventListener("click", (button) => {
   calculator.delete();
+  calculator.updateDisplay();
+});
+
+percentage.addEventListener("click", (button) => {
+  calculator.percentage();
   calculator.updateDisplay();
 });
