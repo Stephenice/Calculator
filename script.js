@@ -14,6 +14,7 @@ const currentOperandTextElement = document.querySelector(
 const percentage = document.querySelector("[data-percentage]");
 
 class Calculator {
+  #percentageNumber = 100;
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
@@ -77,10 +78,11 @@ class Calculator {
   }
 
   percentage() {
-    this.currentOperand = this.currentOperand.toString() / 100;
+    this.currentOperand =
+      this.currentOperand.toString() / this.#percentageNumber;
   }
 
-  getDisplayNumber(number) {
+  #getDisplayNumber(number) {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split(".")[0]);
     const decimalDigits = stringNumber.split(".")[1];
@@ -100,11 +102,11 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(
+    this.currentOperandTextElement.innerText = this.#getDisplayNumber(
       this.currentOperand
     );
     if (this.operation != null) {
-      this.previousOperandTextElement.innerText = `${this.getDisplayNumber(
+      this.previousOperandTextElement.innerText = `${this.#getDisplayNumber(
         this.previousOperand
       )} ${this.operation}`;
     } else {
